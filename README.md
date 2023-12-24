@@ -2,7 +2,7 @@
 This is manual for crypto trading bot https://autotrade.cloud
 
 ### Shortly about used technologies: 
-Golang, Redis, Websocket, MySQL, Docker (+custom deploy system based on Docker API for Golang)
+Golang, Redis, Websocket, MySQL, Docker (+custom deploy system based on Docker API for Golang), Testify (for Unit testing)
 
 
 # How does it work? 
