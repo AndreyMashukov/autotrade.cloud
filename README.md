@@ -1,50 +1,114 @@
 # Autotrade.cloud
-This is manual for crypto trading bot https://autotrade.cloud
 
-### Shortly about used technologies: 
-Golang, Redis, Websocket, MySQL, Docker (+custom deploy system based on Docker API for Golang), Testify (for Unit testing)
+This is a manual for the crypto trading bot [Autotrade.cloud](https://autotrade.cloud).
+
+### Brief Overview of Technologies Used: 
+- **Golang**: For robust backend development.
+- **Redis**: Efficient in-memory data store used for caching.
+- **Websocket**: For real-time data communication.
+- **MySQL**: Reliable database management system.
+- **Docker**: Ensures easy deployment and scalability (+custom deploy system based on Docker API for Golang).
+- **Testify**: Utilized for unit testing.
+
+## How Does It Work?
+
+Autotrade.cloud features a web interface where users can create their own bot instance, obtain the IP of the cloud instance, and configure their custom trading strategy. After configuration, users can deploy the instance and start trading.
+
+## Configuration
+
+Upon creating the first bot instance, the personal account page will appear as shown below:
+
+![Personal Account Page](/images/image_1.png "Personal Account Page")
+
+By clicking "configuration" in the top right corner of the bot card, users will be directed to the bot configuration page. Here, users can set up their trading strategy configuration and enter their Binance API/SECRET keys.
+
+![Crypto Trading Strategy Configuration](/images/image_2.png "Crypto Trading Strategy Configuration")
+
+After making any changes, users must press "Start/Restart" to apply the changes and re-deploy the bot container with the new configuration.
+
+### Key Configuration Parameters:
+- **SYMBOL**: Cryptocurrency pair to trade.
+- **USDT Limit**: The USDT amount for the first buy transaction. The bot uses this amount to buy assets, with the quantity calculated as (usdt * price = asset quantity).
+- **Min Profit Percent**: The minimum profit percentage for selling the bought asset. For example, if the position price is 100 USDT and the minimum profit is 2.5%, the bot will sell the asset for no less than 102.5 USDT.
+- **Extra Charge Trigger Percent**: If the profit is negative and the bot has a budget for extra charge, it will buy more assets to reduce the average price.
+- **USDT Budget for Extra Charge**: The budget for extra charge transactions (similar to USDT Limit but specifically for extra charges). Set to 0 to disable extra buy transactions.
+
+### New Options Available from 26 Dec 2023:
+![New Options for Buy Strategy Setup](/images/image_3.png "New Options for Buy Strategy Setup")
+
+- **Min Price Minutes Period**: The amount of 1-minute Klines to determine the minimum price value (the bot will never buy above this value).
+  ![Minimum Price Minutes Period](/images/image_4.png "Minimum Price Minutes Period")
+
+- **Trading Frame Interval and Period**: Settings for detecting the trading frame.
+  ![Trading Frame Detection](/images/image_5.png "Trading Frame Detection")
+
+- **Buy Price History Check Interval and Period**: Intervals for validating the buy price history.
+  ![Buy Price History Check](/images/image_6.png "Buy Price History Check")
+
+### How Does the Buy History Check Work?
+When calculating the buy price, the bot assesses whether it can sell the asset with the required minimum profit at this price. If the bot cannot sell at the required price, it will lower the buy price and reassess until it finds the optimum buy price.
 
 
-# How does it work? 
+# Frequently Asked Questions (FAQ)
 
-Bot has web interface on https://autotrade.cloud where user is able to create own bot instance, get IP of cloud instance and configure his custom trading strategy, then user can deploy instance and start trading
+1. **What is Autotrade.cloud?**
+   Autotrade.cloud is an automated cryptocurrency trading bot that allows users to configure and deploy their own trading strategies on cloud instances.
 
-# Configuration 
+2. **How do I start using Autotrade.cloud?**
+   To start using the bot, visit https://autotrade.cloud, create your bot instance, configure your trading strategy, and deploy the instance to start trading.
 
-When user creates first bot instance, personal account page will look like this
-<br/>
-<br/>
-<img src="/images/image_1.png" width="400" title="personal account page">
+3. **What technologies are used in Autotrade.cloud?**
+   The bot is built using Golang, Redis, Websocket, MySQL, Docker, and Testify for unit testing.
 
-By clicking "configuration" in right top corner of bot card, user will see bot configuration page, where user can setup trading strategy configuration and API/SECRET keys for Binance API
-<br/>
-<br/>
-<img src="/images/image_2.png" width="600" title="crypto trading strategy configuration">
+4. **Do I need coding skills to use Autotrade.cloud?**
+   No, you don't need coding skills. The bot offers a user-friendly web interface for configuring and managing your trading strategies.
 
-After any changes user have to press "Start/Restart" to apply changes and re-deploy bot container with new configuration
+5. **What exchanges does Autotrade.cloud support?**
+   Currently, Autotrade.cloud supports Binance. You will need to provide your API and SECRET keys from Binance to trade.
 
-* SYMBOL - cruptocurrency pair to trade with
-* USDT limit - USDT amount for first buy transaction, bot will use unli this USDT amount to buy assen, quantity will be caclulated (usdt * price = asset quantity)
-* Min profit percent - minimum profit percent to sell bought asset, for example position price is 100usdt, min profit 2.5% it means that bot will sell asset not less than 102.5usdt
-* Extra charge trigger percent - if profit is negative and bit has budget for extra charge, bot will buy more asset to make average price less
-* USDT budget for extra charge - budget for extra charge transaction (same like USDT limit but for extra charge), set to 0 extra charge percent or budget to disable extra buy transactions
+6. **Is my investment safe with Autotrade.cloud?**
+   While Autotrade.cloud provides tools for automated trading, all trading involves risk. It's important to understand the risks before trading.
 
-New options available from 26 Dec 2023
-<br/>
-<img src="/images/image_3.png" width="600" title="New options for buy strategy setup">
-<br/>
+7. **How can I optimize my trading strategy?**
+   Autotrade.cloud offers various parameters like 'Min Price Minutes Period', 'Trading Frame Interval', and 'Buy Price History Check' to optimize your strategy.
 
-* Min price minutes period - amount of 1m (1 minute) klines to find minimum price value (bot will never buy anything above this value)
-<img src="/images/image_4.png" width="600" title="Minimum price minutes period">
+8. **What is the 'Min Price Minutes Period'?**
+   This feature allows the bot to determine the minimum price for a trade based on a specified number of 1-minute Klines.
 
-* Trading frame interval - interval for trading frame detection
-* Trading frame period - period for trading frame detection
+9. **How does the 'Buy Price History Check' work?**
+    This feature helps the bot decide if a potential buy price will allow for selling the asset at a required minimum profit. If not, the bot adjusts the buy price accordingly.
 
-<img src="/images/image_5.png" width="600" title="Trading frame detection">
+10. **Can I use Autotrade.cloud on multiple devices?**
+    Yes, you can access your Autotrade.cloud account on multiple devices through the web interface.
 
-* Buy price history check interval - interval for buy price history validation 
-* Buy price history check period - period for buy price history validation
-<img src="/images/image_6.png" width="600" title="Buy price history check">
+11. **Are there any subscription fees or hidden costs?**
+    Autotrade.cloud charges a subscription fee for using the bot. There are no hidden costs. All pricing details are transparently provided on the website.
 
-### How does work buy history check???
-When bot calculates buy price it try to answer the question: "Can I sell with required minimum profit if buy this price?", if bot will not be able to sell required price, bot will move down buy price and try to answer this question again, until buy price will not be optimum 
+12. **How often can I change my trading strategy?**
+    You can modify your trading strategy as often as you like. Remember to restart your bot for the changes to take effect.
+
+13. **What kind of customer support does Autotrade.cloud offer?**
+    Autotrade.cloud provides customer support through email and a dedicated Telegram group.
+
+14. **Can I track my trading performance?**
+    Yes, Autotrade.cloud provides detailed reports and analytics to track your trading performance.
+
+15. **Is there a limit to the number of trades I can make?**
+    There is no limit to the number of trades. Your trading frequency will depend on your configured strategy and market conditions.
+
+16. **How do I withdraw my profits?**
+    Profits are managed through your linked exchange account. You can withdraw your profits according to the exchange's withdrawal process.
+
+17. **Can I use Autotrade.cloud in my country?**
+    Autotrade.cloud is available in most countries. However, it's important to check if your country allows cryptocurrency trading.
+
+18. **What happens if I lose my internet connection?**
+    Your trading bot runs on cloud instances, so it will continue trading even if you lose your internet connection.
+
+19. **Can I cancel my subscription at any time?**
+    Yes, you can cancel your subscription at any time through your account settings.
+
+20. **Where can I find more information about setting up my bot?**
+    Detailed setup instructions are available in the [Documentation](https://github.com/AndreyMashukov/autotrade.cloud/blob/main/README.md) section on GitHub.
+
+For more detailed information, please visit our [Documentation](https://github.com/AndreyMashukov/autotrade.cloud/blob/main/README.md).
