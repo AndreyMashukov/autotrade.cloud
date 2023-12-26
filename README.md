@@ -112,3 +112,7 @@ When calculating the buy price, the bot assesses whether it can sell the asset w
     Detailed setup instructions are available in the [Documentation](https://github.com/AndreyMashukov/autotrade.cloud/blob/main/README.md) section on GitHub.
 
 For more detailed information, please visit our [Documentation](https://github.com/AndreyMashukov/autotrade.cloud/blob/main/README.md).
+
+## Join Our Community
+Stay updated and connect with fellow traders by joining our Telegram group: [Autotrade.cloud Telegram Group](https://t.me/autotrade_cloud). Here, you can find the latest news, updates, and exclusive offers!
+
